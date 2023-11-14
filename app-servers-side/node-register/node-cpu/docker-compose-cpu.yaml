@@ -1,12 +1,6 @@
 version: '3.8'
 
 services:
-  dcgm-exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:3.2.5-3.1.8-ubuntu20.04
-    ports:
-      - 9400:9400
-    runtime: nvidia
-
   node-exporter:
     image: prom/node-exporter:v1.3.1
     container_name: node-exporter
@@ -48,4 +42,3 @@ services:
     depends_on:
       - cadvisor
       - node-exporter
-      - dcgm-exporter
