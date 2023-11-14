@@ -1,10 +1,10 @@
 - name: Run node registry service
   hosts: server*
-  remote_user: duongntd2 
+  remote_user: duongntd2
   tasks:
     - name: Install python libs
       ansible.builtin.pip:
-        name: 
+        name:
           - docker
           - python-dotenv
           - requests
@@ -13,7 +13,7 @@
     - name: Copy node-registry directory
       ansible.builtin.copy:
         src: ../node-registry
-        dest: /home/duongntd2 
+        dest: /home/duongntd2
 
     - name: Run container
       shell:
@@ -23,21 +23,17 @@
 
     - name: Check container running
       ansible.builtin.debug:
-        var: output.stderr_lines 
+        var: output.stderr_lines
   tags:
     - run-node-registry
 
 - name: Stop node registry service
   hosts: server*
-  remote_user: duongntd2 
+  remote_user: duongntd2
   tasks:
     - name: Stop container
       shell:
         cmd: "export NODE_IP=$(hostname -I | awk '{print $1}') HOSTNAME=$(hostname) && bash stop-container.sh"
-        chdir: "/home/duongntd2/node-registry"      
+        chdir: "/home/duongntd2/node-registry"
   tags:
     - stop-node-registry
-
-
-
-
