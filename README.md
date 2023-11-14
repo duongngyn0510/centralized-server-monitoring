@@ -57,7 +57,7 @@ The Ansible playbook comprises 3 plays:
 
 **Note** If the server lacks essential packages that require root privileges, such as Docker, and you are not a root user, please consult with your supervisor or system administrator to have them install the required packages.
 
-**Update** your Grafana username and password in `monitoring-services/.env` file
+**Update** your Grafana username and password in `monitoring-services/.env` file.
 
 **Update** your Monitoring server IP at `scrape_configs.targets` field in `prometheus/config/prometheus.yml`. If Monitoring server using gpu, replace `node_type` field with `gpu` value.
 
