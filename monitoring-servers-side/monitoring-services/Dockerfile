@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 ENTRYPOINT gunicorn main:app \
             --bind 0.0.0.0:8000 \
-            --worker-class uvicorn.workers.UvicornWorker  
+            --worker-class uvicorn.workers.UvicornWorker

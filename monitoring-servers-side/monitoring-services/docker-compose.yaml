@@ -55,7 +55,7 @@ services:
       - 9090:9090
     networks:
       - monitoring
-      
+
   grafana:
     image: grafana/grafana:9.0.5
     container_name: grafana
@@ -75,8 +75,8 @@ services:
     healthcheck:
       test: curl -f localhost:3000/api/health || exit 0
       interval: 10s
-      retries: 10         
-  
+      retries: 10
+
   monitoring-server-api:
     build:
       context: .

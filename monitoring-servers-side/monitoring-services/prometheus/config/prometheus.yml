@@ -5,7 +5,7 @@ scrape_configs:
       - files:
         - targets.yaml
         refresh_interval: 20s
-  
+
   - job_name: 'scrape-host'
     scrape_interval: 10s
     static_configs:
@@ -15,7 +15,7 @@ scrape_configs:
           hostname: monitoring-server-1
           node_type: cpu
           job: node-exporter
-          
+
   - job_name: 'scrape-host-container'
     scrape_interval: 10s
     static_configs:
