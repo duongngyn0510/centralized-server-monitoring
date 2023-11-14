@@ -1,5 +1,7 @@
 # Distributed Server Monitoring
 
+**Simply deploy Ansible and the intermediate service, and all your servers can be monitored automatically**
+
 ![](images/architecture.png)
 
 # Table of Contents
