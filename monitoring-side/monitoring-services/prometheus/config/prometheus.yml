@@ -1,0 +1,37 @@
+scrape_configs:
+  - job_name: 'scrape-node'
+    scrape_interval: 10s
+    file_sd_configs:
+      - files:
+        - targets.yaml
+        refresh_interval: 20s
+  
+  - job_name: 'scrape-host'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['192.168.100.196:9100']
+        labels:
+          host_cpu: monitoring-server-1
+          hostname: monitoring-server-1
+          node_type: cpu
+          job: node-exporter
+          
+  - job_name: 'scrape-host-container'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['192.168.100.196:8080']
+        labels:
+          hostname: monitoring-server-1
+          host_cpu: monitoring-server-1
+          node_type: cpu
+          job: cadvisor
+
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['192.168.100.196:9090']
+        labels:
+          hostname: monitoring-server-1
+          host_cpu: monitoring-server-1
+          node_type: cpu
+          job: prometheus

@@ -1,0 +1,56 @@
+- labels:
+    host_gpu: osp-hpc-worker-gpu-01
+    hostname: osp-hpc-worker-gpu-01
+    job: node-exporter
+    node_type: gpu
+  targets:
+  - 192.168.69.10:9100
+- labels:
+    host_gpu: osp-hpc-worker-gpu-01
+    hostname: osp-hpc-worker-gpu-01
+    job: dcgm-exporter
+    node_type: gpu
+  targets:
+  - 192.168.69.10:9400
+- labels:
+    host_gpu: osp-hpc-worker-gpu-01
+    hostname: osp-hpc-worker-gpu-01
+    job: cadvisor
+    node_type: gpu
+  targets:
+  - 192.168.69.10:8080
+- labels:
+    host_gpu: osp-hpc-worker-gpu-01
+    hostname: osp-hpc-worker-gpu-01
+    job: serving
+    node_type: gpu
+  targets:
+  - 192.168.69.10:8002
+- labels:
+    host_gpu: hpc-worker-a30-01
+    hostname: hpc-worker-a30-01
+    job: node-exporter
+    node_type: gpu
+  targets:
+  - 192.168.100.146:9100
+- labels:
+    host_gpu: hpc-worker-a30-01
+    hostname: hpc-worker-a30-01
+    job: cadvisor
+    node_type: gpu
+  targets:
+  - 192.168.100.146:8080
+- labels:
+    host_gpu: hpc-worker-a30-01
+    hostname: hpc-worker-a30-01
+    job: dcgm-exporter
+    node_type: gpu
+  targets:
+  - 192.168.100.146:9400
+- labels:
+    host_gpu: hpc-worker-a30-01
+    hostname: hpc-worker-a30-01
+    job: serving
+    node_type: gpu
+  targets:
+  - 192.168.100.146:8002

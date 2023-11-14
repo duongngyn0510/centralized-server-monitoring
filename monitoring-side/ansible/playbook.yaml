@@ -1,0 +1,83 @@
+- name: Install docker
+  hosts: monitoring-servers
+  remote_user: root  
+  become: True
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install prerequisites apt
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+  tags:
+    - install-docker
+
+- name: Run monitoring service
+  hosts: monitoring-servers
+  remote_user: root  
+  tasks:
+    - name: Install Docker sdk
+      ansible.builtin.pip:
+        name: docker
+        state: latest
+
+    - name: Copy monitoring directory
+      ansible.builtin.copy:
+        src: ../monitoring-services
+        dest: /home/duongntd2 
+
+    - name: Run container
+      become: True
+      shell:
+        cmd: "docker compose -f docker-compose.yaml up -d"
+        chdir: "/home/duongntd2/monitoring-services"
+      register: output
+
+    - name: check container running
+      ansible.builtin.debug:
+        var: output.stderr_lines 
+  tags:
+    - run-service
+    
+- name: Run monitoring service
+  hosts: monitoring-servers
+  remote_user: root
+  tasks:  
+    - name: Stop container
+      become: True
+      shell:
+        cmd: "docker compose -f docker-compose.yaml down -v"
+        chdir: "/home/duongntd2/monitoring-services"      
+  tags:
+    - stop-service
+
+
+
+
