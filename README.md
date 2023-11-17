@@ -39,7 +39,7 @@
 
 **Requirements**:
 + Docker is already installed on this local machine.
-```bash
+```console
 cd monitoring-side/ansible
 pip install -r requirements.txt
 ```
@@ -64,17 +64,17 @@ The Ansible playbook comprises 3 plays:
 
 **Executing the provided command, you'll have the complete monitoring service up and running on your server.**
 + If your monitoring service has not yet installed Docker
-```bash
+```console
 cd monitoring-side/ansible
 ansible-playbook -i inventory playbook.yaml --tags "install-docker, run-service"
 ```
 + If your monitoring service has already installed Docker
-```bash
+```console
 cd monitoring-side/ansible
 ansible-playbook -i inventory playbook.yaml --tags "run-service"
 ```
 + Stop your monitoring service
-```bash
+```console
 cd monitoring-side/ansible
 ansible-playbook -i inventory playbook.yaml --tags "stop-service"
 ```
@@ -119,20 +119,20 @@ Keep in mind that the value in the `hosts` field of the playbook must correspond
 **Executing the provided command enables the monitoring server to monitor your app servers.**
 
 + If you want to monitor all app server defined in inventory
-```bash
+```console
 ansible-playbook -i inventory -l server* playbook.yaml --tags "run-node-register"
 ```
 + If you want to monitor specific app servers defined in inventory
-```bash
+```console
 ansible-playbook -i inventory -l 'server1, server2' playbook.yaml --tags "run-node-register"
 ```
 **Executing the provided command disables the monitoring server from monitoring your app servers.**
 + If you want to disable monitoring for all app servers defined in the inventory
-```bash
+```console
 ansible-playbook -i inventory -l server* playbook.yaml --tags "stop-node-register"
 ```
 + If you want to disable monitoring for specific app servers defined in the inventory
-```bash
+```console
 ansible-playbook -i inventory -l 'server1' playbook.yaml --tags "stop-node-register"
 ```
 
