@@ -146,7 +146,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "(sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode!=\"idle\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))) * 100",
+          "expr": "(sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode!=\"idle\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))) * 100",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "",
@@ -632,7 +632,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "((avg_over_time(node_memory_SwapTotal_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval]) - avg_over_time(node_memory_SwapFree_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])) / (avg_over_time(node_memory_SwapTotal_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval]) )) * 100",
+          "expr": "((avg_over_time(node_memory_SwapTotal_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m]) - avg_over_time(node_memory_SwapFree_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])) / (avg_over_time(node_memory_SwapTotal_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m]) )) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1233,7 +1233,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"system\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"system\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -1248,7 +1248,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"user\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"user\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -1263,7 +1263,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"iowait\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"iowait\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Busy Iowait",
@@ -1277,7 +1277,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=~\".*irq\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=~\".*irq\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Busy IRQs",
@@ -1291,7 +1291,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq'}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq'}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Busy Other",
@@ -1305,7 +1305,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"idle\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"idle\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Idle",
@@ -2274,7 +2274,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])*8",
+              "expr": "irate(node_network_receive_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "recv {{device}}",
@@ -2286,7 +2286,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])*8",
+              "expr": "irate(node_network_transmit_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "trans {{device}} ",
@@ -3736,7 +3736,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"system\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"system\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -3751,7 +3751,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"user\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"user\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "User - Normal processes executing in user mode",
@@ -3765,7 +3765,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"nice\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"nice\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Nice - Niced processes executing in user mode",
@@ -3779,7 +3779,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"iowait\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"iowait\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Iowait - Waiting for I/O to complete",
@@ -3793,7 +3793,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"irq\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"irq\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Irq - Servicing interrupts",
@@ -3807,7 +3807,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"softirq\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"softirq\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Softirq - Servicing softirqs",
@@ -3821,7 +3821,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"steal\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"steal\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Steal - Time spent in other operating systems when running in a virtualized environment",
@@ -3835,7 +3835,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"idle\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])))",
+              "expr": "sum by(instance) (irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\", mode=\"idle\"}[5m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])))",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4516,7 +4516,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])*8",
+              "expr": "irate(node_network_receive_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive",
@@ -4528,7 +4528,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])*8",
+              "expr": "irate(node_network_transmit_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit",
@@ -5059,7 +5059,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[5m])",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -5070,7 +5070,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[5m])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -5286,7 +5286,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_read_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "irate(node_disk_read_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[5m])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -5299,7 +5299,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_written_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "irate(node_disk_written_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"}[5m])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -5431,7 +5431,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_io_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"} [$__rate_interval])",
+              "expr": "irate(node_disk_io_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\",device=~\"$diskdevices\"} [5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -11601,7 +11601,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pgpgin{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pgpgin{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pagesin - Page in operations",
@@ -11613,7 +11613,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pgpgout{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pgpgout{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pagesout - Page out operations",
@@ -11727,7 +11727,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pswpin{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pswpin{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pswpin - Pages swapped in",
@@ -11739,7 +11739,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pswpout{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pswpout{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pswpout - Pages swapped out",
@@ -12117,7 +12117,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pgfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pgfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgfault - Page major and minor fault operations",
@@ -12129,7 +12129,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pgmajfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pgmajfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgmajfault - Major page fault operations",
@@ -12141,7 +12141,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_pgfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])  - irate(node_vmstat_pgmajfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_pgfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])  - irate(node_vmstat_pgmajfault{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgminfault - Minor page fault operations",
@@ -12529,7 +12529,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_vmstat_oom_kill{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_vmstat_oom_kill{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -13396,7 +13396,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_forks_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_forks_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -13510,7 +13510,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(process_virtual_memory_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(process_virtual_memory_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -13536,7 +13536,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(process_virtual_memory_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(process_virtual_memory_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -13549,7 +13549,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(process_virtual_memory_max_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(process_virtual_memory_max_bytes{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -13800,7 +13800,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_schedstat_running_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_schedstat_running_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -13813,7 +13813,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_schedstat_waiting_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_schedstat_waiting_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -14079,7 +14079,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_context_switches_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_context_switches_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Context switches",
@@ -14091,7 +14091,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_intr_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_intr_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -14359,7 +14359,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_interrupts_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_interrupts_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -14461,7 +14461,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_schedstat_timeslices_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_schedstat_timeslices_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -14665,7 +14665,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(process_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(process_cpu_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -15384,7 +15384,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_systemd_socket_accepted_connections_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_systemd_socket_accepted_connections_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -16055,7 +16055,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -16066,7 +16066,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -16480,7 +16480,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_read_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_read_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - Read bytes",
@@ -16492,7 +16492,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_written_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_written_bytes_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Written bytes",
@@ -16907,7 +16907,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_read_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval]) / irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_read_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m]) / irate(node_disk_reads_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "hide": false,
               "interval": "",
               "intervalFactor": 4,
@@ -16920,7 +16920,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_write_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval]) / irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_write_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m]) / irate(node_disk_writes_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -17325,7 +17325,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_io_time_weighted_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_io_time_weighted_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "intervalFactor": 4,
               "legendFormat": "{{device}}",
@@ -17740,7 +17740,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_reads_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_reads_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Read merged",
               "refId": "A",
@@ -17751,7 +17751,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_writes_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_writes_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Write merged",
               "refId": "B",
@@ -18154,7 +18154,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_io_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_io_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - IO",
@@ -18166,7 +18166,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_discard_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_discard_time_seconds_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - discard",
@@ -18973,7 +18973,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_discards_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_discards_completed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - Discards completed",
@@ -18985,7 +18985,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_disk_discards_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_disk_discards_merged_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Discards merged",
@@ -19801,7 +19801,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_packets_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_packets_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -19814,7 +19814,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_packets_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_packets_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -19930,7 +19930,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_errs_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_errs_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive errors",
@@ -19942,7 +19942,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_errs_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_errs_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Rransmit errors",
@@ -20057,7 +20057,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_drop_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_drop_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive drop",
@@ -20069,7 +20069,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_drop_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_drop_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit drop",
@@ -20184,7 +20184,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_compressed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_compressed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive compressed",
@@ -20196,7 +20196,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_compressed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_compressed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit compressed",
@@ -20311,7 +20311,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_multicast_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_multicast_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive multicast",
@@ -20426,7 +20426,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_fifo_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_fifo_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive fifo",
@@ -20438,7 +20438,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_fifo_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_fifo_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit fifo",
@@ -20553,7 +20553,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_receive_frame_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_receive_frame_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -20656,7 +20656,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_carrier_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_carrier_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Statistic transmit_carrier",
@@ -20771,7 +20771,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_network_transmit_colls_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_network_transmit_colls_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit colls",
@@ -21431,7 +21431,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_softnet_processed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_softnet_processed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -21444,7 +21444,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_softnet_dropped_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_softnet_dropped_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -21547,7 +21547,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_softnet_times_squeezed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_softnet_times_squeezed_total{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22466,7 +22466,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_IpExt_InOctets{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_IpExt_InOctets{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22479,7 +22479,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_IpExt_OutOctets{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_IpExt_OutOctets{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "OutOctets - Sent octets",
@@ -22582,7 +22582,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Ip_Forwarding{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Ip_Forwarding{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22697,7 +22697,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Icmp_InMsgs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Icmp_InMsgs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22710,7 +22710,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Icmp_OutMsgs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Icmp_OutMsgs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22825,7 +22825,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Icmp_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Icmp_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22952,7 +22952,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_InDatagrams{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_InDatagrams{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -22965,7 +22965,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_OutDatagrams{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_OutDatagrams{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23067,7 +23067,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23080,7 +23080,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_NoPorts{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_NoPorts{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23093,7 +23093,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_UdpLite_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_UdpLite_InErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "legendFormat": "InErrors Lite - UDPLite Datagrams that could not be delivered to an application",
               "refId": "C"
@@ -23103,7 +23103,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_RcvbufErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_RcvbufErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23116,7 +23116,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Udp_SndbufErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Udp_SndbufErrors{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23243,7 +23243,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_InSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_InSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "instant": false,
               "interval": "",
@@ -23257,7 +23257,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_OutSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_OutSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23361,7 +23361,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_ListenOverflows{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_ListenOverflows{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -23375,7 +23375,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_ListenDrops{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_ListenDrops{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -23389,7 +23389,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_TCPSynRetrans{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_TCPSynRetrans{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23402,7 +23402,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_RetransSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_RetransSegs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "legendFormat": "RetransSegs - Segments retransmitted - that is, the number of TCP segments transmitted containing one or more previously transmitted octets",
               "refId": "D"
@@ -23412,7 +23412,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_InErrs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_InErrs{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "legendFormat": "InErrs - Segments received in error (e.g., bad TCP checksums)",
               "refId": "E"
@@ -23422,7 +23422,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_OutRsts{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_OutRsts{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "interval": "",
               "legendFormat": "OutRsts - Segments sent with RST flag",
               "refId": "F"
@@ -23673,7 +23673,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_SyncookiesFailed{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_SyncookiesFailed{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -23687,7 +23687,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_SyncookiesRecv{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_SyncookiesRecv{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -23701,7 +23701,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_TcpExt_SyncookiesSent{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_TcpExt_SyncookiesSent{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -23805,7 +23805,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_ActiveOpens{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_ActiveOpens{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -23818,7 +23818,7 @@
                 "type": "prometheus",
                 "uid": "${DS_PROMETHEUS}"
               },
-              "expr": "irate(node_netstat_Tcp_PassiveOpens{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[$__rate_interval])",
+              "expr": "irate(node_netstat_Tcp_PassiveOpens{host_gpu=\"$node\",node_type=\"gpu\",job=\"$job\"}[5m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,

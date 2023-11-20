@@ -219,7 +219,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(rate(container_memory_failcnt{hostname=\"$node\", name!=\"\"}[$__rate_interval])) by (name)",
+          "expr": "sum(rate(container_memory_failcnt{hostname=\"$node\", name!=\"\"}[5m])) by (name)",
           "hide": false,
           "legendFormat": "{{name}}",
           "range": true,
